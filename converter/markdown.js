@@ -2,8 +2,8 @@
    var headlineRegExp = /^(\#{1,6})([^\#\n]+)$/m;
    var stra = [];
    while ((stra = headlineRegExp.exec(str)) !== null) {
-     count = stra[1].length;
-     var content = stra[2].replace(/\s+$/, '');
+     var count = stra[1].length;
+     var content = stra[2].trim();
      str = str.replace(stra[0], '<h' + count + '>' + content + '</h' + count + '>' + '\n');
    }
    return str;
