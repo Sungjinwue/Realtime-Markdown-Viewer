@@ -54,6 +54,15 @@ var parseItalic = function(str) {
   return str;
 };
 
+var parseCode = function(str) {
+  var codeRegExp = /`{1}(\w+)`{1}/g;
+  var m = null;
+  while ((m = codeRegExp.exec(str)) !== null) {
+    str = str.replace(m[0], '<pre>' + m[1] + '</pre>');
+  }
+  return str;
+};
+
 var markdown = {
   parse: function (str, strict) {
     'use strict';
@@ -63,6 +72,7 @@ var markdown = {
     str = parseStrong(str);
     str = parseItalic(str);
     str = parseLink(str);
+    str = parseCode(str);
     return str;
   }
 };
