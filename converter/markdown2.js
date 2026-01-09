@@ -36,12 +36,22 @@ var parseBold = function(str) {
   return str;
 };
 
+var parseItalic = function(str) {
+  var italicRegExp = /(\*|_)(.*?)\1/g;
+  var m = null;
+  while ((m = italicRegExp.exec(str)) !== null) {
+    str = str.replace(m[0], '<i>' + m[2] + '</i>');
+  }
+  return str;
+};
+
 var markdown = {
   parse: function (str, strict) {
     'use strict';
     str = parseHorizontalLine(str);
     str = parseHeadline(str);
     str = parseBold(str);
+    str = parseItalic(str);
     str = parseLink(str);
     return str;
   }
