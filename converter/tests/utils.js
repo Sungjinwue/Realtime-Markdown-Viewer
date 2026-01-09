@@ -84,5 +84,5 @@ module.exports = {
   getTestSuite: getTestSuite,
   assertion: assertion,
   normalize: normalize,
-  markdown: require('../markdown.js')
+  markdown: require('../markdown2.js')
 };

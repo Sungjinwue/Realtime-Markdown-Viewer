@@ -11,3 +11,14 @@ describe('parse() features testsuite', function () {
     it(testsuite[i].name, assertion(testsuite[i], markdown));
   }
 })
+
+
+var parseHorizontalLine = function(str) {
+  var horizontalRegExp = /^(?:([\*\-_]?)+)\1\1\$/gm;
+  var stra = [];
+  while ((stra = horizontalRegExp.exec(str)) !== null) {
+    str = str.replace(stra[0], '\n<hr/>\n');
+    str = parseHorizontaleLine(str);
+  }
+  return str;
+};
