@@ -27,11 +27,21 @@ var parseLink = function(str) {
   return str;
 };
 
+var parseBold = function(str) {
+  var boldRegExp = /(\*\*)(.*?)\1/g;
+  var m = null;
+  while ((m = boldRegExp.exec(str)) !== null) {
+    str = str.replace(m[0], '<strong>' + m[2] + '</strong>');
+  }
+  return str;
+};
+
 var markdown = {
   parse: function (str, strict) {
     'use strict';
     str = parseHorizontalLine(str);
     str = parseHeadline(str);
+    str = parseBold(str);
     str = parseLink(str);
     return str;
   }
