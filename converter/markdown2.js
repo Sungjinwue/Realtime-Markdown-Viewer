@@ -19,10 +19,14 @@ var parseHorizontalLine = function (str) {
 };
 
 var parseLink = function(str) {
-  var linkRegExp = /\[([^\[]+)\]\(([^\)]+)\)/g;
+  var linkRegExp = /!?\[([^\[]+)\]\(([^\)]+)\)/g;
   var m = null;
   while ((m = linkRegExp.exec(str)) !== null) {
-    str = str.replace(m[0], '<a ' + 'href="' + m[2] + '">' + m[1] + '</a>');
+    if (m[0].substr(0, 1) === '!') {
+      str = str.replace(m[0], '<img src="' + m[2] + '" alt="' + m[1] + '" title="' + m[1] + '" />\n');
+    } else {
+      str = str.replace(m[0], '<a ' + 'href="' + m[2] + '">' + m[1] + '</a>');
+    }
   }
   return str;
 };
